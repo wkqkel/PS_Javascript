@@ -4,5 +4,4 @@ function solution(num_list, n) {
       ans.push(num_list.splice(0,n))
     }
     return ans
-
 }
