@@ -1,4 +1,4 @@
-const NUMBER_MAP = {
+const NUMBERS_MAP = {
     zero: 0,
     one: 1,
     two: 2,
@@ -12,9 +12,12 @@ const NUMBER_MAP = {
 }
 
 function solution(numbers) {
-    let ans = numbers
-    for (let [key,value] of Object.entries(NUMBER_MAP)){
-      ans = ans.replaceAll(key, value)
-    }
-    return +ans
+    // let ans = numbers
+    // for (let [key,value] of Object.entries(NUMBERS_MAP)){
+    //   ans = ans.replaceAll(key, value)
+    // }
+    // return +ans
+    
+    return +Object.keys(NUMBERS_MAP)
+                  .reduce((acc,cur,idx)=> acc.replaceAll(cur, idx), numbers)
 }
