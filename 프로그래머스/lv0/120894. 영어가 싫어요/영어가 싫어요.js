@@ -21,5 +21,6 @@ function solution(numbers) {
     // return +Object.keys(NUMBERS_MAP)
     //               .reduce((acc,cur,idx)=> acc.replaceAll(cur, idx), numbers)
     
-    return +numbers.replace(/zero|one|two|three|four|five|six|seven|eight|nine/g, (v)=> NUMBERS_MAP[v])
+    const regex = /zero|one|two|three|four|five|six|seven|eight|nine/g
+    return +numbers.replace(regex, (v)=> NUMBERS_MAP[v])
 }
