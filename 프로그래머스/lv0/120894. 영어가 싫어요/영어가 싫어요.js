@@ -18,6 +18,8 @@ function solution(numbers) {
     // }
     // return +ans
     
-    return +Object.keys(NUMBERS_MAP)
-                  .reduce((acc,cur,idx)=> acc.replaceAll(cur, idx), numbers)
+    // return +Object.keys(NUMBERS_MAP)
+    //               .reduce((acc,cur,idx)=> acc.replaceAll(cur, idx), numbers)
+    
+    return +numbers.replace(/zero|one|two|three|four|five|six|seven|eight|nine/g, (v)=> NUMBERS_MAP[v])
 }
