@@ -5,6 +5,5 @@ function solution(clothes) {
         map.set(item[1], [...data,item[0]])
     })
     return [...map.values()]
-                .reduce((acc,cur)=> acc * ( cur.length + 1),1) - 1
-   
+                .reduce((acc,cur)=> acc * ( cur.length + 1),1) - 1;
 }
