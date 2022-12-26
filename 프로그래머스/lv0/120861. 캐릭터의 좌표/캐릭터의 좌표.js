@@ -4,6 +4,7 @@ const KEY_INPUT_MAP = {
     left: [-1,0],
     right: [1,0]
 }
+
 function solution(keyinput, board) {
   const [maxX, maxY] = board.map((v)=> ~~(v/2))
 
