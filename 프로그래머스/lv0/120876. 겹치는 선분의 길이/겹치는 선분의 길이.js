@@ -6,7 +6,7 @@ function solution(lines) {
   // return ans.filter(el=>el>1).length;
   let ans = {}
   lines.forEach(([a,b])=>{
-      for(a; a<b; a++) ans[a] = (ans[a]||0) +1;
+      for(a; a<b; a++) ans[a] = (ans[a]||0) +1; // a<b주의
   })
   return Object.values(ans).filter(el=>el>1).length;
 }
