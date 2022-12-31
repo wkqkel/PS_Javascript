@@ -11,5 +11,5 @@ function solution(i, j, k) {
     // }
     // return a.split(k).length - 1
     
-    return  Array(j-i+1).fill(0).map((_,idx)=> i+idx).join('').split(k).length - 1
+    return  Array(j-i+1).fill(i).map((v,i)=> v+i).join('').split(k).length - 1
 }
