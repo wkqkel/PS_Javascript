@@ -11,5 +11,7 @@ function solution(a, b) {
 //        if(denominator % i === 0) return 2
 //    }
 //    return 1
-       return +((+(a/b).toFixed(10)) !== a/b) +1
+    
+        return +(a/b).toFixed(10) === a/b ? 1 : 2
+       // return +((+(a/b).toFixed(10)) !== a/b) +1
 }
