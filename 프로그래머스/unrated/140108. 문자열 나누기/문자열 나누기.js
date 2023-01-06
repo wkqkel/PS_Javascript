@@ -10,24 +10,9 @@ function solution(s) {
             count = [0,0]
             x = s[i+1]
         } else{
+            // 남은 문자는 그냥 마지막 하나만 들어가도 카운트이기때문에 성립한 것.
             if(i===s.length-1) ans.push(s[i])
         }
     }
     return ans.length
-    
-    
-    
-    
-    
-//     let first = 1
-//     let rest = 0
-
-//     const res = []
-//     for(let i=1; i<s.length; i++){
-//        const cur = res.reduce((acc,cur)=> acc+ cur.length,0)
-   
-//       s[cur+1]===s[0] ? first++ : rest++;
-//       if(first===rest) res.push(s.slice(cur+1,i))
-//     }
-//     return res
 }
