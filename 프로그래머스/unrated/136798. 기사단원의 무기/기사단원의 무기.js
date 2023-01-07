@@ -1,5 +1,6 @@
 function getMeasureNumber(n){
     let cnt = 0;
+    // point : i*i
     for (let i = 1; i * i <= n; i++) {
         if(i * i === n) cnt++;
         else if (n % i === 0) cnt +=2;
