@@ -4,10 +4,8 @@ function solution(citations) {
     // 최대논문수에서 하나씩 빼가면서 
     // citations.filter((v)=>v>=h).length 는 인용된 횟수가 h이상인 논문의 갯수 가
     // 논문수 이상이면 해당 논문수가 정답
-    // 인용된 횟수가 0이면 0리턴
     
-    for(let h=citations.length; h>0; h--){
+    for(let h=citations.length; h>=0; h--){
       if(h <= citations.filter((v)=>v>=h).length) return h
     }
-    return 0
 }
