@@ -1,10 +1,7 @@
 function solution(food) {
-    const [water, ...rest] = food
-    let half = ''
-    rest.map(v=> Math.floor(v/2))
-        .map((v,i)=> {
-            for(let j=0; j<v;j++){
-                half += (i+1)
-            }})
-    return half + 0 + [...half].reverse().join('')
+   let half = ''
+   for (let i=1; i< food.length; i++) {
+       half += String(i).repeat(food[i]/2) // repeat 자동으로 소수점버림.
+   }
+   return half + 0 + [...half].reverse().join('')
 }
