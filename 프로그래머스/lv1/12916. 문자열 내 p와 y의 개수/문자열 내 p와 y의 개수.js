@@ -7,6 +7,7 @@ function solution(s){
  // return s.toLowerCase().split('p').length === s.toLowerCase().split('y').length;
     
  // 3.regex 
- // match는 정규식을 만족하는 것 ig는 대소문자 구분 X
+ // match는 정규식을 만족하는 것, 일치하는 것이 없으면 null 반환 
+ // ig는 대소문자 구분 X
  return s.match(/p/ig)?.length === s.match(/y/ig)?.length
 }
