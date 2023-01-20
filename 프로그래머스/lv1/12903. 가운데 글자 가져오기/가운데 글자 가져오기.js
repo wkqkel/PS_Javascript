@@ -9,7 +9,5 @@ function solution(s) {
   // 3. slice(시작 인덱스[, 종료위치])
   // 종료 위치의 -1까지 문자열을 자른다
   // substring와같이 동작하지만, 음수를 사용하면 뒤에서부터 몇번째인지를 나타낼 수 있음.
-  return s.length % 2 === 0
-        ? s.substr(s.length / 2 -1, 2)
-        : s[Math.floor(s.length / 2)]
+  return s.length % 2 ? s[~~(s.length / 2)] : s.substr(s.length / 2 -1, 2)
 }
