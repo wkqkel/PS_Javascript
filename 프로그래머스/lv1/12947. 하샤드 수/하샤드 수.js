@@ -1,3 +1,3 @@
 function solution(x) {
- return x % [...(x+'')].reduce((acc,cur)=> acc+ +cur, 0) === 0
+ return x % [...x.toString()].reduce((acc,cur)=> acc+ +cur, 0) === 0
 }
