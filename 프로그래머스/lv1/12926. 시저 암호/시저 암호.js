@@ -8,8 +8,5 @@ function solution(s, n) {
   }
 
    return [...s].map(v=> pushBack(v, n)).join('')
-       
-       
- 
 }
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
