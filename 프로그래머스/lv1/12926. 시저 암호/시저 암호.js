@@ -10,7 +10,8 @@ function solution(s, n) {
 //    return [...s].map(v=> pushBack(v, n)).join('')
     
     const alphabets = alphabet + alphabet;
-    const clever = alphabets + alphabets.toUpperCase() + '                                        ';
+    const space = '                                        ';
+    const clever = alphabets + alphabets.toUpperCase() + space
     return [...s].map(v=> clever[clever.indexOf(v) + n]).join('')
 }
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
