@@ -10,7 +10,8 @@ function solution(s, n) {
 //    return [...s].map(v=> pushBack(v, n)).join('')
     
     const alphabets = alphabet + alphabet;
-    const space = '                                        ';
+    const space = '                                        '; 
+    // 공백 최대 25만큼 밀릴 수 있음
     const clever = alphabets + alphabets.toUpperCase() + space
     return [...s].map(v=> clever[clever.indexOf(v) + n]).join('')
 }
