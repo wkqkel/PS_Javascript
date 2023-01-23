@@ -1,20 +1,17 @@
-
-
-function getCombination(arr, n) {
+function getCombinations(arr, n) {
     if(n === 1) return arr.map(v=>[v])
-    const results = [];
+    const res = [];
     arr.forEach((fixed, idx, origin)=>{
         const rest = origin.slice(idx + 1);
-        const combines = getCombination(rest, n - 1);
-        const attached = combines.map((v)=> [fixed,...v])
-        results.push(...attached)
+        const combinations = getCombinations(rest, n - 1);
+        const attached = combinations.map((v)=> [fixed,...v])
+        res.push(...attached)
     })
-    return results
+    return res
 }
 
 function solution(numbers){
-    return getCombination(numbers, 3)
-        .filter(item=>item.reduce((acc,cur)=> acc+cur,0)===0).length
+  return getCombinations(numbers, 3).filter(v=> v.reduce((acc,cur)=> acc+cur,0)===0).length
 }
 
 
