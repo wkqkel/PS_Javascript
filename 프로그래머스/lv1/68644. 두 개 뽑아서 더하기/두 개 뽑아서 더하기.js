@@ -11,9 +11,11 @@ const getCombinations = (arr, n) =>{
 }
 
 function solution(numbers) {
+    // 5.18ms
     // return [...new Set(getCombinations(numbers, 2).map((v)=> v[0] + v[1]).sort((a,b)=> a-b))]
 
     // 2중for문으로 풀기
+    // 성능 이게 훨씬 좋음(0.32ms)
     const set = new Set()
     for(let i = 0; i<numbers.length; i++){
         for(let j = i + 1; j<numbers.length; j++){
