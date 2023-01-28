@@ -19,8 +19,9 @@ function solution(n, arr1, arr2) {
       const res = arr1[i] | arr2[i];
       const bit = res.toString(2);
       const blankStr = " ".repeat(n - bit.length)
-      const bitStr = (blankStr + bit).replaceAll('1', '#').replaceAll('0', ' ')
-      ans.push(bitStr)
+      const bitStr = bit.replaceAll('1', '#').replaceAll('0', ' ')
+      // const bitStr = bit.replace(/1/gi, '#').replace(/0/gi, ' ') 
+      ans.push(blankStr + bitStr)
   }
   return ans
 }           
