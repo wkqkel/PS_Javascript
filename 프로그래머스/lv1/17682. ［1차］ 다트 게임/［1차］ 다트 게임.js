@@ -41,7 +41,7 @@ function solution(dartResult) {
     return darts.reduce((acc,cur)=> acc+cur,0)
 }
 
-// 정규표현식 사용 X
+// 정규표현식 사용 X => 더 빠름
 // function solution(dartResult) {
 //    const bonus = ['_', 'S', 'D', 'T']
 //    const points = []
