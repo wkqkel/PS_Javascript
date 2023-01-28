@@ -1,3 +1,21 @@
+// 정규표현식 사용
+function solution(dartResult) {
+    const bonusMap = {'S': 1, 'D': 2, 'T': 3};
+    const optionMap = {'#': -1, '*': 2 };
+    
+    const splitDartResult = dartResult.match(/\d+(S|D|T)(\*|#)?/g)
+    const points = []
+    
+    for(let x of splitDartResult) {
+        // 마지막 배열에 빈문자열 있는데 왜 그렇지...?
+        const [point, bonus, option] = x.match(/\d+|S|D|T|\*|#?/g).slice(0,-1);
+        if(option === '*') points[points.length - 1] *= 2;
+        points.push(Math.pow(point, bonusMap[bonus]) * (optionMap[option] || 1));
+    }
+    return points.reduce((acc,cur)=> acc+cur,0)
+}
+
+// 다른사람풀이 1번째있는거 분석
 function solution(dartResult) {
     // \d.?\D 숫자 + 아무 문자올수도 안+ 숫자아닌거
     // match는 매칭되는거 찾아서 첫번째 반환
@@ -23,6 +41,7 @@ function solution(dartResult) {
     return darts.reduce((acc,cur)=> acc+cur,0)
 }
 
+// 정규표현식 사용 X
 // function solution(dartResult) {
 //    const bonus = ['_', 'S', 'D', 'T']
 //    const points = []
@@ -45,3 +64,4 @@ function solution(dartResult) {
 //    }
 //    return points.reduce((acc,cur)=> acc+cur, 0)
 // }
+
