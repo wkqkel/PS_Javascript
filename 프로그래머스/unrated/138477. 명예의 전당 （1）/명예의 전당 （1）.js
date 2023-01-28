@@ -1,8 +1,8 @@
 function solution(k, score) {
-    const arr = [];
     return score.map((v,i)=>{
        return score.slice(0,i+1).sort((a,b)=> b-a).slice(0, k).at(-1)
     })
+    
     // const result = []
     // let arr = [];
     // for(let x of score) {
