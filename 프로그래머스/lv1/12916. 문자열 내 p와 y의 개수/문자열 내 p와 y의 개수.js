@@ -9,5 +9,9 @@ function solution(s){
  // 3.regex 
  // match는 정규식을 만족하는 것, 일치하는 것이 없으면 null 반환 
  // ig는 대소문자 구분 X
- return s.match(/p/ig)?.length === s.match(/y/ig)?.length
+ // return s.match(/p/ig)?.length === s.match(/y/ig)?.length
+    
+ return ![...s].reduce((acc,cur)=> {
+    return acc + (cur.toLowerCase() === 'y' ? 1 : cur.toLowerCase() === 'p' ? -1 : 0) 
+ },0)
 }
