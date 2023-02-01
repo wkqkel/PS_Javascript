@@ -41,9 +41,4 @@ function solution(numbers, hand) {
     }
    return res
 }
-const keypad = ['123', '456', '789', '*0#']
- 
-// const keypad =  [['1','2','3'],
-//                  ['4','5','6'],
-//                  ['7','8','9'],
-//                  ['*','0','#'],]
+const keypad = ['123', '456', '789', '*0#'];
