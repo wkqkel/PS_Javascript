@@ -8,5 +8,5 @@ function solution(survey, choices) {
         const choicedPersonality = survey[i][+(choices[i]-4 > 0)]
         obj[choicedPersonality] = (obj[choicedPersonality] || 0) + Math.abs(4- choices[i])
     }
-    return PERSONALITY_TYPES.map(v => ~~obj[v[0]] >= ~~obj[v[1]] ? v[0]: v[1]).join('')
+    return PERSONALITY_TYPES.map(v => (obj[v[0]] | 0) >= (obj[v[1]] | 0) ? v[0]: v[1]).join('')
 }
