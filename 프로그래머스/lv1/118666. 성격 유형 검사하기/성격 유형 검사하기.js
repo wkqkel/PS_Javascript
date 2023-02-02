@@ -5,7 +5,8 @@ function solution(survey, choices) {
     const obj = {}
     const PERSONALITY_TYPES = ['RT','CF', 'JM', 'AN']
     for(let i = 0; i< survey.length; i++) {
-        obj[survey[i][+(choices[i]-4 > 0)]] = (obj[survey[i][+(choices[i]-4 > 0)]] || 0) + MAP[choices[i]]
+        const choicedPersonality = survey[i][+(choices[i]-4 > 0)]
+        obj[choicedPersonality] = (obj[choicedPersonality] || 0) + MAP[choices[i]]
     }
     return PERSONALITY_TYPES.map(v => ~~obj[v[0]] >= ~~obj[v[1]] ? v[0]: v[1]).join('')
 }
