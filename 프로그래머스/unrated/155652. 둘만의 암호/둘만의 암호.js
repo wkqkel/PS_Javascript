@@ -1,4 +1,3 @@
-const alphabet = 'abcdefghijklmnopqrstuvwxyz' + 'abcdefghijklmnopqrstuvwxyz'  + 'abcdefghijklmnopqrstuvwxyz'
 function solution(s, skip, index) {
    let ans = ''
    for(let x of s){
@@ -11,3 +10,7 @@ function solution(s, skip, index) {
    }
     return ans
 }
+
+const alphabet = 'abcdefghijklmnopqrstuvwxyz' 
+                 + 'abcdefghijklmnopqrstuvwxyz'  
+                 + 'abcdefghijklmnopqrstuvwxyz'
