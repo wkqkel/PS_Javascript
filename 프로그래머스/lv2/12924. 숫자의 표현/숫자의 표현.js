@@ -1,5 +1,5 @@
 function solution(n) {
-    if([1,2].includes(n)) return 1;
+    if([1,2].includes(n)) return 1; 
     
     const arr = Array(~~(n/2)+1).fill(1).map((v,i)=> v + i)
     let count = left = right = 0;
@@ -10,8 +10,8 @@ function solution(n) {
        if(sum <= n) right++
        if(sum >= n) left++
     }
-    
-    return count + 1;
+
+    return count + 1; // n이 1이나 2일땐 +1해주면 안됨. early return으로 예외처리
 }
 
 // 15보다 클때까지 뒤에 더해
