@@ -8,7 +8,7 @@ function solution(n) {
        
        if(sum === n) count++
        if(sum <= n) right++
-       if(sum >= n) left++
+       if(sum > n) left++
     }
 
     return count + 1; // n이 1이나 2일땐 +1해주면 안됨. early return으로 예외처리
