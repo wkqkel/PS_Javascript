@@ -1,8 +1,8 @@
 function solution(s) {
    const stack = []
-   for(let i=0; i<s.length; i++){
-       if(stack[stack.length-1] === s[i]) stack.pop()
-       else stack.push(s[i])
+   for(let x of s){
+       if(stack[stack.length-1] === x) stack.pop()
+       else stack.push(x)
    }
    return stack.length === 0 ? 1 : 0
 }
