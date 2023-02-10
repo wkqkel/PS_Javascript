@@ -6,12 +6,10 @@ const isFail = (words, i) => {
             curr.length === 1)
  }
      
-  
 function solution(n, words) {
-   
      for(let i=0; i<words.length; i++){
          if(isFail(words, i)) return [(i+1)%n || n, Math.ceil((i+1) / n)]
      }
-    
+
      return [0,0]
 }
