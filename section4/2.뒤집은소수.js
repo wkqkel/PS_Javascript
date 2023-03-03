@@ -7,9 +7,8 @@ function isPrime(n) {
 }
 
 function solution(arr) {
-  const reverse = (v) => +[...String(v)].reduce((acc, cur) => cur + acc, "");
-  const reverseArr = arr.map(reverse);
-  return reverseArr.filter(isPrime);
+  const reverse = (v) => +[...String(v)].reverse().join("");
+  return arr.map(reverse).filter(isPrime);
 }
 
 let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
