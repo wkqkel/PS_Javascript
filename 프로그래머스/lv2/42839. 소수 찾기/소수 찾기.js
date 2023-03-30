@@ -18,12 +18,12 @@ function isCorrectMapping(n,map){
 
 function solution(numbers) {
     // 1. numbers를 내림차순으로 정렬한 후 문자열로 만들고, 만들 수 있는 최댓값을 구함
-    const reverse = [...numbers].sort((a,b)=> +b - +a).join('');
-    const max = +reverse;
+    const max = +[...numbers].sort((a,b)=> +b - +a).join('');
     const ans = []
+    // 2. numbers의 각 요소의 갯수를 map을 이용해 구함.
     const map = new Map();
     [...numbers].map(v=> map.set(v, (map.get(v)|0) + 1 ))
-    // 2. 매핑한거랑 isPrime체크
+    // 2. 맵과 요소 갯수맞는지랑 isPrime체크
     for(let i=2; i<=max; i++){
       if(isCorrectMapping(i,new Map(map)) && isPrime(i)){
           ans.push(i)
