@@ -22,11 +22,8 @@ class Character {
     
     makeHistory(prev, next) {
         // x:0,-1 y:0,0 ===  x:-1,0 y:0,0 => sorted
-        const newHistory = JSON.stringify({
-                             x:[prev[0],next[0]].sort(),
-                             y:[prev[1],next[1]].sort()
-                           })
-        this.history = this.history.add(newHistory)  
+        const newHistory = [[prev[0],next[0]].sort(), [prev[1],next[1]].sort()]
+        this.history = this.history.add(`${newHistory}`)  
     }
 }
 
