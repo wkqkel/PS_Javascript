@@ -9,10 +9,10 @@ class Character {
     history = new Set()
     move(direction) {
         const add = MOVE_MAP[direction]
-        const prev = [...this.position]
         if(this.checkOverPlane(this.position, add)) {
             return
         }
+        const prev = [...this.position]
         this.position = [this.position[0] + add[0], 
                          this.position[1] + add[1]] 
         // x:0,-1 y:0,0 ===  x:-1,0 y:0,0 => sorted
