@@ -1,37 +1,34 @@
 class Chat {
-    messages = []
+    messages = [];
     users = {}
     
-    enter({id,nickname}) {
-       const messagesIdx = [...(this.users[id]?.messagesIdx || []), this.messages.length]
-       this.users[id] = { nickname, messagesIdx };
-       this.messages.push(`${nickname}님이 들어왔습니다.`)
-       this.change({id,nickname})
+    Enter({id,nickname}) {
+       this.Change({id,nickname})
+       this.messages.push({id,text: '님이 들어왔습니다.'})
     }
     
-    leave({id}) {
-       const messagesIdx = [...this.users[id].messagesIdx, this.messages.length]
-       const { nickname } = this.users[id] 
-       this.users[id] = { nickname, messagesIdx };
-       this.messages.push(`${nickname}님이 나갔습니다.`)
+    Leave({id}) {
+       this.messages.push({id,text: '님이 나갔습니다.'})
     }
     
-    change({id,nickname}) {
-       this.users[id] = {...this.users[id], nickname};
-       const {messagesIdx} = this.users[id]
-       messagesIdx.forEach(messageIdx =>{
-         const [a, b] =  this.messages[messageIdx].split('님이')         
-         this.messages[messageIdx] = nickname + '님이' + b
-       })
+    Change({id,nickname}) {
+       this.users[id] = nickname;
     }
-};
+    
+    Publish(){
+        return this.messages.map((v,i)=>{
+            const {id, text} = v;
+            return this.users[id] + text
+        })
+    }
+}
 
 function solution(record) {
     const chat = new Chat()
     for (let x of record){
        const [method, id, nickname] = x.split(' ');
-       chat[method.toLowerCase()]({id,nickname});
+       chat[method]({id,nickname})
     }
-    return chat.messages
+    return chat.Publish()
 }
 
