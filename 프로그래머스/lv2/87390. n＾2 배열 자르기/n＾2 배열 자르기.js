@@ -7,12 +7,10 @@ function solution(n, left, right) {
     // })
     
     // return arr.slice(left,right+1)
- 
 
-    return  Array(right -left + 1).fill(0).map((v,i)=>{
+    return Array(right -left + 1).fill(0).map((v,i)=>{
          let curIdx = (v + i +left) % (n)
          let 현재바퀴수 =  Math.floor((left+i) /n) + 1
          return curIdx < 현재바퀴수 ? 현재바퀴수 : curIdx + 1
     })
-   
 }
