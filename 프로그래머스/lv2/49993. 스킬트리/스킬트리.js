@@ -1,6 +1,5 @@
 function solution(skill, skill_trees) {
-  const filterOnlyRequired = tree => [...tree].filter(v=>skill.includes(v));
-  const filteredSkillTrees = skill_trees.map(filterOnlyRequired);
+  const filterRequiredPrior = tree => [...tree].filter(v=>skill.includes(v));
   const isRightOrdered = tree => [...tree].every((v,i)=>skill[i] === v);
-  return filteredSkillTrees.filter(isRightOrdered).length;
+  return skill_trees.map(filterRequiredPrior).filter(isRightOrdered).length;
 }
