@@ -1,28 +1,36 @@
-function solution(msg){
-    let answer=[];
-    let count = 0;
+class LZW {
+    dic = [];
+    입력 = '';
+    res = [];
     
-    if(msg.length===1){
-       return [array.indexOf(msg)]
-    } 
-    for(let i = 0; i < msg.length; i++){
-        let minSplittedWord = msg[count];
-        while(array.indexOf(minSplittedWord)>-1){
-           minSplittedWord = minSplittedWord + msg[count+1] 
-           count += 1;
+    constructor(입력){
+        this.dic = ['_', ...ALPHABETS] // 사전초기화
+        this.입력 = 입력 // 입력 초기화
+        while(this.입력){ // 입력에서 처리하지않은 다음글자가 있다면
+             // 현재입력과 일치하는 가장 긴 문자열 w찾고 색인번호와 함께 출력
+             const {W,색인번호} = this.findW() 
+             this.입력 = this.입력.slice(W.length) // 입력에서 w를 제거
+             const C = this.입력[0]
+             const 추가단어 = W+C 
+             this.dic.push(추가단어) 
+             this.res.push(색인번호)
         }
-        if(!minSplittedWord) continue;
-        if(count === msg.length){
-          let lastMinSplittedWord = minSplittedWord.split("undefined")[0]
-          array.push(lastMinSplittedWord)
-          answer.push(array.indexOf(lastMinSplittedWord));
-        } else {
-          array.push(minSplittedWord);
-          let _minSplittedWord = minSplittedWord.slice(0, minSplittedWord.length - 1)
-          answer.push(array.indexOf(_minSplittedWord));
+    }
+    findW(){
+        for(let i=this.입력.length; i>0;i--){
+            const str = this.입력.slice(0,i);
+            const idx = this.dic.indexOf(str);
+            const isW = idx > -1 
+            if(isW){
+                return {W:str, 색인번호:idx}
+            }
         }
-     }
- return answer;
+    }
 }
 
-const array =["*","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+function solution(msg) {
+    const lzw = new LZW(msg)
+    return lzw.res
+}
+
+const ALPHABETS = Array.from({length: 26}, (v,i)=> String.fromCharCode(65+i))
