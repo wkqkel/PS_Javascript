@@ -36,7 +36,6 @@ const make교집합 =(A,B)=>{
 }
 
 const make합집합 =(A,B)=>{
-    const 합집합 = new Map();
     const arr = [...new Set([...A.keys(), ...B.keys()])]
     return arr.reduce((acc,cur)=>{
         acc.set(cur, Math.max(A.get(cur)|0, B.get(cur)|0))
