@@ -2,22 +2,28 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n')
 
 const N = input[0];
-const roadArr = [0, ...input[1].split(' ').map(Number)];
-const priceArr = input[2].split(' ').map(Number);
+const roadArr = input[1].split(' ').map(Number);
+const priceArr = input[2].split(' ').map(Number).slice(0,-1);
+// 마지막꺼에서 살일은 없음. 그 이후엔 가지않으니까 기름필요X
 
 let res = 0
-// 앞에 더 싼게 존재하면, 거기서 사고옴.
-// 또는
-// 뒤에 더싼게 나올떄까지, 거기까지는 최소한만 충전
+// 뒤에서부터 돌면서, 앞에서 제일싼인덱스에서 그 사이 인덱스의 거리까지 사고와야함.
+// https://www.acmicpc.net/board/view/79399
+// 
 
-for(let i=0; i<priceArr.length; i++){
-  const curPrice = priceArr[i];
-  const hasMoreCheapIndex = priceArr.slice(1,-1).findIndex(v=>v<curPrice) + 1
+// 5
+// 0 2 3 1 1
+// 5 2 4 1 1
+// 답 : 19
+let prevMinIdx = priceArr.length 
+for(let i = priceArr.length-1; i>=0; i--){
+  
+  const min = Math.min(...priceArr.slice(0,i+1));
+  const minIdx = priceArr.findIndex(v=>v===min);
 
-  if(hasMoreCheapIndex > 0) {
-    res += roadArr[i+1] * curPrice
-    continue;
+  if(i===minIdx) {
+    res += roadArr.slice(i,prevMinIdx).reduce((a,b)=>a+b) * priceArr[i]
+    prevMinIdx = i
   }
-  res += roadArr.slice(i+1).reduce((a,b)=>a+b) * curPrice
-  return console.log(res)
 }
+console.log(res)
