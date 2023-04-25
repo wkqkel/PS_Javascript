@@ -1,17 +1,17 @@
 const fs = require('fs');
-const [A,B] = fs.readFileSync('/dev/stdin').toString().trim().split(' ')
-
-// 2를 곱한다. => 2를 나눈다
-// 1을 수의 가장 오른쪽에 추가한다. => 가장 오른쪽의 1을뺀다
-let cur = B
-let n= 0
-while(+cur > +A){
-  n++
-  if(cur[cur.length-1]=== '1'){
-    cur = cur.slice(0, -1)
-    continue
-  }
-  cur = String(cur / 2)
+let [a,b] = fs.readFileSync('dev/stdin').toString().trim().split(' ').map(Number)
+let flag = false;
+let res = 1;
+while(a<=b){
+    if(a===b){
+        flag =true;
+        break
+    }
+    if (b%2==0) b = parseInt(b/2);
+    else if (b % 10 == 1) b = parseInt(b / 10)
+    else break;
+    res++;
 }
-if(+cur < +A) return console.log(-1)
-console.log(+n+1)
+if (flag) console.log(res)
+else console.log(-1)
+
