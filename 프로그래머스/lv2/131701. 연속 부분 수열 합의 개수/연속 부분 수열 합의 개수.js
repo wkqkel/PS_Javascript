@@ -1,14 +1,12 @@
-function solution(elements) {
-    const arr = elements
-    const n = elements.length
-    const set = new Set()
-    for(let width=1; width<=n; width++){ 
-      for(let i=0; i<n; i++){
-        set.add(concat(arr, width-1).slice(i,width+i).reduce((a,b)=>a+b))
-      }
+const solution =(elements)=>{
+  const set = new Set()
+  const arr =elements.concat(elements)
+  
+  for(i=0;i<elements.length;i++){
+    for(j=0;j<arr.length;j++){
+      set.add(arr.slice(j,j+i+1).reduce((a,b)=>a+b))
     }
-    return set.size
-}
+  }
 
-const concat = (arr, n) => arr.concat(arr.slice(0,n))
-const sum = (arr) => arr.reduce((a,b)=>a+b,0);
+  return set.size
+}
