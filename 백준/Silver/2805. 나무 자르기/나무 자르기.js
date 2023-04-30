@@ -9,7 +9,7 @@ const arr = input[1].split(' ').map(Number).sort((a,b)=>a-b);
 let start = 0;
 let end = arr[arr.length - 1]
 
-let res = 0;
+let res
 while(start <= end){
   const mid = parseInt((start + end) / 2);
   const sum = arr.reduce((acc,cur)=> acc + Math.max(cur-mid,0) ,0)
