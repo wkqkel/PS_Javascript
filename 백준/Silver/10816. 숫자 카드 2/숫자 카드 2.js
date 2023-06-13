@@ -1,40 +1,9 @@
-const fs = require("fs");
-const filePath = "dev/stdin";
-// const input = fs.readFileSync(filePath).toString().trim().split(' '); // 1줄인경우
-const input = fs.readFileSync(filePath).toString().trim().split("\n"); // 여러줄인경우
+let fs = require("fs");
+let input = fs.readFileSync("dev/stdin").toString().trim().split("\n");
 
-const N = Number(input[0]);
-const arr = input[1].split(' ').map(Number).sort((a,b)=>a-b);
-const M = Number(input[2]);
-const query = input[3].split(' ').map(Number)
+const card = input[1].split(' ').reduce((acc,cur)=> {
+  acc.set(+cur, (acc.get(+cur) || 0)+1);
+  return acc;
+}, new Map())
 
-
-const lowerBound = (arr, target, start,end) =>{
-  while(start < end){
-    const mid = parseInt((start+end)/2);
-    if(arr[mid]>= target) end = mid;
-    else start = mid +1;
-  }
-  return end;
-}
-
-
-const upperBound = (arr, target, start,end) =>{
-  while(start < end){
-    const mid = parseInt((start+end)/2);
-    if(arr[mid]> target) end = mid;
-    else start = mid +1;
-  }
-  return end;
-}
-
-function countByRange(arr,leftValue,rightValue) {
-  const rightIndex = upperBound(arr,rightValue,0,arr.length);
-  const leftIndex = lowerBound(arr,leftValue,0,arr.length);
-  return rightIndex - leftIndex;
-}
-
-
-const res = query.reduce((acc,cur) => acc + countByRange(arr,cur,cur) +'\n','')
-
-console.log(res)
+console.log(input[3].split(' ').map(v=> card.get(+v)|| 0).join(' '))
