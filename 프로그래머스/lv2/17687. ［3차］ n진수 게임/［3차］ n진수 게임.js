@@ -1,16 +1,9 @@
 function solution(n, t, m, p) {
-const numbers = Array(1000000).fill(0).map((n, idx) => idx)
+    let str = ''
+    for(let i = 0; i <= t * m; i++){
+        str += i.toString(n);
+    }
 
-  const numberedNumbers = numbers.reduce((p,c) => p + `${c.toString(n)}`)
-
-
-
-  let answers = []
-  for (let i=0; i<t; i++) {
-    answers.push(numberedNumbers[p+(i*m)-1])
-  }
-
-  // console.log(answers.join('').toUpperCase())
-  return answers.join('').toUpperCase()
+    return [...str].filter((v,i)=> i % m === p-1).slice(0,t).join("").toUpperCase()
 }
     
