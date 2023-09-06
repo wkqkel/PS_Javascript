@@ -7,15 +7,11 @@ var once = function(fn) {
     return function(...args){
        calls++
        if(calls > 1) {
-         return undefined;
+         return;
        }
        return fn(...args)
     }
 };
-
-
-
-
 
 /**
  * let fn = (a,b,c) => (a + b + c)
