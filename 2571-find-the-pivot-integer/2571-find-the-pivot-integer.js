@@ -13,7 +13,6 @@ var pivotInteger = function(n) {
     //     }
     // }
     // return -1
-
     const sum = (1 + n) * n /2;
     let sum1 = 0
     for(let i=1; i<=n; i++) {
