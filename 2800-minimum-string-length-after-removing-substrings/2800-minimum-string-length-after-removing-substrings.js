@@ -3,8 +3,7 @@
  * @return {number}
  */
 var minLength = function (s) {
-
-    while (s.includes("AB") || s.includes("CD")) {
+    while (s.match(/AB|CD/)) {
         s = s.replace(/AB|CD/, '')
     }
     return s.length
