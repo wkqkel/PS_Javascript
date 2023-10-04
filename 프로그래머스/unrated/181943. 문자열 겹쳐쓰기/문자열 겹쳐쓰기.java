@@ -12,7 +12,5 @@ class Solution {
         answer = String.join("",arr);
         
         return answer;
-        
- 
     }
 }
