@@ -10,6 +10,7 @@ class Solution {
             int s = query[0];
             int e = query[1];
             int k = query[2];
+      
             int min = limit;
             for(int i = 0; i < arr.length; i++) {
                 int cur = arr[i];
