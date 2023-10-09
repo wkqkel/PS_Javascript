@@ -9,9 +9,9 @@ class Solution {
             int e = query[1];
             int k = query[2];
             
-            for(int i = 0; i <answer.length;i++){
-                if(s<= i && i <= e && i % k == 0) {
-                    answer[i] += 1;
+            for(int i = s; i <=e;i++){
+                if(i % k == 0) {
+                   answer[i] += 1;
                 }
             }
         }
