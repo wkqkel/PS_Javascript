@@ -39,12 +39,12 @@ function solution(maps) {
     let answer = init;
     
     const queue = [];
-    queue.push([0,0,0])
+    queue.push([0,0,1])
     
     while(queue.length > 0) {
       const [x,y, L] = queue.shift();
       if(x === maxX && y === maxY) {
-          answer = Math.min(L+1, answer)
+          return L;
       }
       for(let i=0; i < 4; i++) {
            const nx = x + dx[i];
@@ -56,5 +56,5 @@ function solution(maps) {
       }
     }
     
-    return answer === init ? -1 : answer;
+    return -1;
 }
