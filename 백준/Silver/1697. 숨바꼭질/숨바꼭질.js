@@ -32,6 +32,7 @@ while(q.length){
   const [x,L] = q.shift();
   if(x === K) {
     min = Math.min(min,L);
+    return console.log(min)
   }
   for(let nx of [x-1,x+1,x*2]){
     if(0<= nx && nx <= max &&visited[nx] === false) {
@@ -41,4 +42,3 @@ while(q.length){
   }
 }
 
-console.log(min)
