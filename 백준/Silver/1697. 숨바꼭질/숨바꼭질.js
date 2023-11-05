@@ -22,8 +22,9 @@
 const fs = require('fs');
 const [N,K] = fs.readFileSync('dev/stdin').toString().trim().split(' ').map(Number);
 
+const max = 100_001
 const q = [[N,0]];
-const visited = new Array(100_002).fill(false);
+const visited = new Array(max).fill(false);
 visited[N] = true;
 let min = Number.MAX_SAFE_INTEGER;
 
@@ -33,7 +34,7 @@ while(q.length){
     min = Math.min(min,L);
   }
   for(let nx of [x-1,x+1,x*2]){
-    if(visited[nx] === false) {
+    if(0<= nx && nx <= max &&visited[nx] === false) {
       visited[nx] = true;
       q.push([nx,L+1]);
     }
