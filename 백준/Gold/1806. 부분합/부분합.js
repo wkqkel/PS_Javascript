@@ -2,21 +2,23 @@ const fs = require('fs');
 const input = fs.readFileSync('dev/stdin').toString().trim().split('\n');
 
 const [n,s] = input[0].split(' ').map(Number);
-const arr = input[1].split(' ').map(Number);
+const a = input[1].split(' ').map(Number);
 
+let mn = 0x7fffffff;
 
-
-let st = 0;
+let tot = a[0];
 let en = 0;
-let tot = arr[0];
-let min = 9999999999
-while(st < n && en < n) {
-  if(tot < s){
-    tot += arr[++en]
-  } else {
-    min = Math.min(min, en - st + 1)
-    tot -= arr[st++]
+
+for(let st = 0; st < n; st++){
+  while(en < n && tot < s) {
+    en++;
+    if(en != n) tot += a[en]
   }
+  if(en == n) break;
+  mn = Math.min(mn, en - st + 1);
+  tot -= a[st];
 }
 
-console.log(min === 9999999999 ? 0 : min)
+if(mn== 0x7fffffff) mn = 0;
+
+console.log(mn)
