@@ -23,29 +23,29 @@ const [n,m] = [input[0], input[2]];
 const arr1 = input[1].split(' ').map(Number);
 const arr2 = input[3].split(' ').map(Number);
 
-// 방법 1
+// 방법 2 - while문
 arr1.sort((a,b)=>a-b);
 
 let res = '';
 
-function search(st,en,target){
-  if(st === en) {
-    if(arr1[st] === target) {
-      return res += '1 '
+function search(st, en, target){
+  while(st <= en) {
+    const mid = Math.floor((st + en) / 2);
+    const v = arr1[mid];
+    if(v === target) {
+      return 1
+    } else if(v > target) {
+      en = mid - 1;
+    } else {
+      st = mid + 1;
     }
-    return res += '0 '
   }
 
-  const mid = Math.floor((st+en)/2);
-  if(arr1[mid] < target) {
-     search(mid+1,en,target);
-  } else {
-    search(st,mid,target);
-  }
+  return 0;
 }
 
 for(let each of arr2) {
-  search(0, n-1, each)
+  res += search(0, n-1, each) + ' '
 }
 
-console.log(res)
+console.log(res);
