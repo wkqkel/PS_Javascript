@@ -1,104 +1,71 @@
-/**
-1. 아이디어
-- 가장자리면서 .인것들 돔.
-- 불 bfs와 지훈이 dfs 거리를 구해놓음
-- 가장자리에서 불dfs > 지훈이dfs면 탈출(min갱신) 
-- 아니면 impossible
-2. 시간복잡도
-- 불bfs: N*M
-- 지훈이bfs: N*M
-- 가장자리 (N+M) *2
-- 총 2NM + 2(N+M)
-- 2 * 1e6 + 4 * 1e3 => 2004000 << 2억이하 가능
-3. 자료구조
-
-*/
 #include <bits/stdc++.h>
 using namespace std;
-
 #define X first
 #define Y second
+string board[1002];
+int dist1[1002][1002]; // 불의 전파시간
+int dist2[1002][1002]; // 지훈이의 이동시간
+int n,m;
+int dx[4] = {1,0,-1,0};
+int dy[4] = {0,1,0,-1};
 
-int main() {
+int main(void) {
   ios::sync_with_stdio(0);
   cin.tie(0);
 
-  int n, m;
-
   cin >> n >> m;
 
-  string arr[1002];
-  int dist_f[1002][1002];
-  int dist_j[1002][1002];
-
-  int dx[4] = {-1,1,0,0};
-  int dy[4] = {0,0,1,-1};
-
-
-  queue<pair<int,int>> q;
-  
-  pair<int,int> js;
-  for(int i = 0; i < n; i++) {
-    cin >> arr[i];
-    for(int j = 0; j < m; j++) {
-      dist_f[i][j] = -1;
-      dist_j[i][j] = -1;
-      if(arr[i][j] == 'J') js = {i, j};
-      if(arr[i][j] == 'F') {
-        q.push({i,j});
-        dist_f[i][j] = 0;
+  queue<pair<int, int>> Q1;
+  queue<pair<int, int>> Q2;
+  for(int i = 0; i < n; i++){ 
+    cin >> board[i];
+    for(int j =0; j < m; j++){
+      dist1[i][j] = -1;
+      dist2[i][j] = -1;
+      if(board[i][j] == 'F'){
+        Q1.push({i,j});
+        dist1[i][j] = 0;
+      }
+      if(board[i][j] == 'J'){
+        Q2.push({i,j});
+        dist2[i][j] = 0;
       }
     }
   }
 
-  while(!q.empty()){
-    pair<int, int> cur = q.front();
-    q.pop();
-    for(int dir = 0; dir < 4; dir++) {
+  // 불에 대한 BFS
+  while(!Q1.empty()) {
+    auto cur = Q1.front(); Q1.pop();
+    for(int dir = 0; dir < 4; dir++){
       int nx = cur.X + dx[dir];
       int ny = cur.Y + dy[dir];
       if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-      if(arr[nx][ny] == '#' || dist_f[nx][ny] >= 0) continue;
-      dist_f[nx][ny] = dist_f[cur.X][cur.Y] + 1;
-      q.push({nx,ny});
+      if(dist1[nx][ny] >= 0 || board[nx][ny] == '#') continue;
+      dist1[nx][ny] = dist1[cur.X][cur.Y] + 1;
+      Q1.push({nx,ny});
     }
   }
 
-  q.push(js);
-  dist_j[js.X][js.Y] = 0;
-  while(!q.empty()){
-    pair<int, int> cur = q.front();
-    q.pop();
-    for(int dir = 0; dir < 4; dir++) {
+  // 지훈에 대한 BFS
+  while(!Q2.empty()) {
+    auto cur = Q2.front(); Q2.pop();
+    for(int dir = 0; dir < 4; dir++){
       int nx = cur.X + dx[dir];
       int ny = cur.Y + dy[dir];
-      if(nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-      if(arr[nx][ny] == '#' || dist_j[nx][ny] >= 0) continue;
-      dist_j[nx][ny] = dist_j[cur.X][cur.Y] + 1;
-      q.push({nx,ny});
+      if(nx < 0 || nx >= n || ny < 0 || ny >= m) {
+        // 범위를 벗어났다는 것은 탈출에 성공을 의미
+        // 큐에 거리순으로 들어가므로 최초에 탈출한 시간을 출력
+        cout << dist2[cur.X][cur.Y] + 1;
+        return 0;
+      }
+      if(dist2[nx][ny] >= 0 || board[nx][ny] == '#') continue;
+      if(dist1[nx][ny] != -1 && dist1[nx][ny] <= dist2[cur.X][cur.Y] +1) {
+        continue; // 지훈이 도착한 시간과 동시에 불이 도착하거나 빨리 도착했으면 안됨.
+      }
+      dist2[nx][ny] = dist2[cur.X][cur.Y] + 1;
+      Q2.push({nx,ny});
     }
   }
 
-  int ans = 1e9;
-
-  for(int i = 0; i < n; i++) {
-    for(int j = 0; j < m; j++){
-      if(i > 0 && i < n -1 && 0<j && j < m-1) continue;
-      if(dist_j[i][j] < 0) continue;
-      if(dist_f[i][j] < 0 || dist_f[i][j] > dist_j[i][j]) ans = min(ans, dist_j[i][j]);
-    }
-  }
-
-  if(ans == 1e9) {
-    cout << "IMPOSSIBLE";
-    return 0;
-  }
-  
-  cout << ans + 1;
+  cout << "IMPOSSIBLE"; // 여기에 도달했음은 탈출에 실패했음을 의미
 }
-
-/**
-- 놓친부분
-1. 불꽃이 안 닿아서 -1일수도.
-2. 불꽃이 여러개
-*/
